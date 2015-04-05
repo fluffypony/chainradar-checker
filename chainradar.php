@@ -100,7 +100,7 @@ if (json_decode($dpage, true) !== null)
 	$spentouts = array();
 	foreach (json_decode($dpage, true)["result"]["transfers"] as $rawout)
 	{
-		$spentouts[] = trim($rawout["tx_hash"],"<>");
+		//$spentouts[] = trim($rawout["tx_hash"],"<>");
 	}
 }
 
@@ -130,8 +130,7 @@ foreach ($txs as $tx)
 	$mixin = (int)trim(FindTextBetween($tpage, "Mixin</th>\n            <td>","</td>"));
 	$inputsraw = FindTextBetween($tpage, '<h3>Inputs', '<h3>Outputs');
 
-	preg_match_all('/\<td class\="mono\-font"\>(.*?)<\/td\>/', $tpage, $fromtransactions);
-	
+	preg_match_all('/\<a  class\="mono\-font" href\="\/xmr\/transaction\/(.*?)"\>/', $tpage, $fromtransactions);
 	if ($fromtransactions[1])
 	{
 		echo "ChainRadar says there are ".count($fromtransactions[1])." inputs with a mixin of ".$mixin.". According to ChainRadar:\n";
@@ -173,6 +172,7 @@ foreach ($txs as $tx)
 
 curl_close($GLOBALS['scurl']);
 
+echo "=======\n";
 echo "SUMMARY\n";
 echo "=======\n";
 echo "Total guesses ChainRadar had: ".$totalguesses."\n";
