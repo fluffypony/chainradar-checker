@@ -2,6 +2,10 @@
 
 Proves that ChainRadar's "from transaction" guessing is a scam.
 
+## Premise
+
+By making a series of test transactions and then putting simplewallet into RPC mode, those "From Transaction" values can be scraped from ChainRadar and then checked against the transaction IDs of your spent outputs. If it is correct then the transaction will appear in your spent outputs, although there is something of a chance of a false positive. For large test samples in large wallets I would expect to see anything up to 5% false positives.
+
 ## Usage
 
 1. Make a series of transfers, populate the ```$txs``` array with your transaction IDs.
@@ -10,11 +14,11 @@ Proves that ChainRadar's "from transaction" guessing is a scam.
 
 3. Run the checker: ```php chainradar.php```
 
-### Sample Output
+## Sample Output
 
 I tested it against 19 transactions, some mixin 4 and some mixin 20 (excluding my own signature, so mixin 5 and 21 according to ChainRadar).
 
-For these transactions none of them were completely compromised by ChainRadar, and ChainRadar go 0 out of 157 guesses correct.
+For these transactions none of them were completely compromised by ChainRadar, and ChainRadar got 0 out of 157 guesses correct.
 
 This was the output:
 
