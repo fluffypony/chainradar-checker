@@ -100,7 +100,7 @@ if (json_decode($dpage, true) !== null)
 	$spentouts = array();
 	foreach (json_decode($dpage, true)["result"]["transfers"] as $rawout)
 	{
-		//$spentouts[] = trim($rawout["tx_hash"],"<>");
+		$spentouts[] = trim($rawout["tx_hash"],"<>");
 	}
 }
 
