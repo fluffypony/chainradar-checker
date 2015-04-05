@@ -103,6 +103,11 @@ if (json_decode($dpage, true) !== null)
 		$spentouts[] = trim($rawout["tx_hash"],"<>");
 	}
 }
+else
+{
+	echo "Encountered an error getting spent outputs from simplewallet, is it running in RPC mode?\n";
+	exit;
+}
 
 curl_setopt($GLOBALS['scurl'], CURLOPT_HEADER, true);
 curl_setopt($GLOBALS['scurl'], CURLOPT_ENCODING, 'gzip,deflate');
